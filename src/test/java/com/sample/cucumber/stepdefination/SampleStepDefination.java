@@ -10,7 +10,7 @@ import org.testng.log4testng.Logger;
 
 import com.sample.cucumber.utils.TestBase;
 import com.sample.cucumber.utils.Utilities;
-import com.sample.cucumber.webpage.SamplePage;
+import com.sample.cucumber.webpages.SamplePage;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
