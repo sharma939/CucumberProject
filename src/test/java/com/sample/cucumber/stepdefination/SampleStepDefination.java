@@ -1,17 +1,16 @@
-package com.sample.cucumber.stepdefinations;
+package com.sample.cucumber.stepdefination;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.log4testng.Logger;
 
-import com.sample.cucumber.utils.Constants;
 import com.sample.cucumber.utils.TestBase;
 import com.sample.cucumber.utils.Utilities;
-import com.sample.pages.SamplePage;
+import com.sample.cucumber.webpage.SamplePage;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
@@ -20,27 +19,18 @@ import cucumber.api.java.en.Then;
 public class SampleStepDefination extends TestBase {
 
 	WebDriver driver;
-	SamplePage samplePage = new SamplePage(driver);
+	SamplePage samplePage;
 	Logger log = Logger.getLogger(this.getClass());
+
+	@Before
+	public void setUp() {
+		initialization();
+		samplePage = new SamplePage(driver);
+	}
 
 	@Given("^User navigates to test Url$")
 	public void user_navigates_to_test_Url() throws Throwable {
 		try {
-
-			// To Launch Chrome driver instance
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "src/test/java/Drivers/chromedriver");
-			driver = new ChromeDriver();
-
-			// Maximize Window
-			driver.manage().window().maximize();
-
-			// Default Page loading timeout
-			driver.manage().timeouts().pageLoadTimeout(Constants.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-
-			// Implicit Wait
-			driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
-
 			// Launching the application
 			driver.get(Utilities.testURL);
 			// To check page loaded successfully
@@ -128,6 +118,11 @@ public class SampleStepDefination extends TestBase {
 			e.printStackTrace();
 			Assert.fail("Error in getting the amount values, Please check and try again!!");
 		}
+	}
+
+	@After
+	public void tearDown() {
+		closeBrowser();
 	}
 
 }

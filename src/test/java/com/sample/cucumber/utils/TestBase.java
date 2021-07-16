@@ -1,21 +1,15 @@
 package com.sample.cucumber.utils;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase extends Utilities {
 
 	public static WebDriver driver;
-	public static Properties prop;
 
-	@Before
-	public WebDriver initialization() {
-
+	public void initialization() {
 		// To Launch Chrome driver instance
 		System.setProperty("webdriver.chrome.driver",
 				System.getProperty("user.dir") + "src/test/java/Drivers/chromedriver");
@@ -29,17 +23,9 @@ public class TestBase extends Utilities {
 
 		// Implicit Wait
 		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
-
-		// Launching the application
-		driver.get(Utilities.testURL);
-
-		return driver;
-
 	}
 
-	@After
-	public void tearDown() {
-
+	public void closeBrowser() {
 		// Close the browser sessions
 		driver.close();
 		driver.quit();
