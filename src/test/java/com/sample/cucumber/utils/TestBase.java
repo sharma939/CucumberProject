@@ -1,34 +1,25 @@
 package com.sample.cucumber.utils;
 
-import java.util.concurrent.TimeUnit;
+import java.io.IOException;
 
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase extends Utilities {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 
-	public void initialization() {
-		// To Launch Chrome driver instance
-		System.setProperty("webdriver.chrome.driver",
-				System.getProperty("user.dir") + "src/test/java/Drivers/chromedriver");
-		driver = new ChromeDriver();
-
-		// Maximize Window
-		driver.manage().window().maximize();
-
-		// Default Page loading timeout
-		driver.manage().timeouts().pageLoadTimeout(Constants.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-
-		// Implicit Wait
-		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+	@Before
+	public void initialization() throws IOException {
+		System.out.println("Calling Before Method");
+		Utilities.setUp();
 	}
 
+	@After
 	public void closeBrowser() {
-		// Close the browser sessions
-		driver.close();
-		driver.quit();
+		System.out.println("Calling After Method");
+		Utilities.tearDown();
 	}
 
 }
