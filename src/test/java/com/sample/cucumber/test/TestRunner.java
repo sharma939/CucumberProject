@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(features = { "src/test/resources/features/" }, glue = {
-		"com.sample.cucumber.stepdefinations" }, plugin = { "pretty" }, dryRun = true)
+		"com.sample.cucumber.stepdefinations.SampleStepDefination" }, plugin = { "pretty" }, dryRun = true)
 
 public class TestRunner {
 

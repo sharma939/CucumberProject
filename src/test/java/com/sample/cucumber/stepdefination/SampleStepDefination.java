@@ -8,7 +8,6 @@ import org.testng.log4testng.Logger;
 
 import com.sample.cucumber.utils.TestBase;
 import com.sample.cucumber.webpages.SamplePage;
-
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,12 +15,13 @@ import cucumber.api.java.en.Then;
 public class SampleStepDefination extends TestBase {
 
 	WebDriver driver;
-	SamplePage samplePage = new SamplePage(driver);
+	SamplePage samplePage;
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Given("^User navigates to test Url$")
 	public void user_navigates_to_test_Url() throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			// To check page loaded successfully
 			samplePage.validatePageLoaded();
 		} catch (Exception e) {
@@ -33,6 +33,7 @@ public class SampleStepDefination extends TestBase {
 	@Then("^Ensure correct count of values appears on the screen$")
 	public void ensure_correct_count_of_values_appears_on_the_screen() throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			// Validate the count
 			if (samplePage.validateCount()) {
 				log.info("Correct count of values are present on the screen");
@@ -50,6 +51,7 @@ public class SampleStepDefination extends TestBase {
 	@Then("^Check the values on the screen are greater than Zero")
 	public void check_the_values_on_the_screen_are_greater_than_zero() throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			if (samplePage.areValuesGreatedThanZero()) {
 				log.info("All the amount values on the screen are greated than zero");
 			} else {
@@ -66,6 +68,7 @@ public class SampleStepDefination extends TestBase {
 	public void verify_Total_balance_is_correct_based_on_the_values_listed_on_the_screen(DataTable arg1)
 			throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			List<List<String>> data = arg1.raw();
 			if (samplePage.checkBalance(Double.parseDouble(data.get(0).get(0)))) {
 				log.info("Total balance is showing correct based on the values listed on the screen");
@@ -82,6 +85,7 @@ public class SampleStepDefination extends TestBase {
 	@Then("^Ensure values are formatted as currencies$")
 	public void ensure_values_are_formatted_as_currencies() throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			if (samplePage.isFormattedAsCurrency()) {
 				log.info("All the amount values are formatted correctly in currencies");
 			} else {
@@ -97,6 +101,7 @@ public class SampleStepDefination extends TestBase {
 	@Then("^Verify Total balance matches the sum of the values$")
 	public void verify_Total_balance_matches_the_sum_of_the_values() throws Throwable {
 		try {
+			samplePage = new SamplePage(driver);
 			if (samplePage.validateTotalBalance()) {
 				log.info("Total balance is matching with the sum of values listed on the screen");
 			} else {

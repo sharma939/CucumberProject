@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 
 public class SamplePage {
 
-	public WebDriver driver;
-	public String valueOfTextBox;
+	WebDriver driver;
+	String valueOfTextBox;
 
 	// Getting all the locators
 	By valueField1 = By.id("lbl_Val_1");

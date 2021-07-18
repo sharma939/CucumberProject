@@ -4,11 +4,8 @@ import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
 
 public class TestBase extends Utilities {
-
-	public WebDriver driver;
 
 	@Before
 	public void initialization() throws IOException {
