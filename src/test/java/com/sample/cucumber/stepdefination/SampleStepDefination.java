@@ -2,14 +2,11 @@ package com.sample.cucumber.stepdefination;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.log4testng.Logger;
 
 import com.sample.cucumber.utils.TestBase;
-import com.sample.cucumber.utils.Utilities;
 import com.sample.cucumber.webpages.SamplePage;
 
 import cucumber.api.DataTable;
@@ -19,20 +16,12 @@ import cucumber.api.java.en.Then;
 public class SampleStepDefination extends TestBase {
 
 	WebDriver driver;
-	SamplePage samplePage;
+	SamplePage samplePage = new SamplePage(driver);
 	Logger log = Logger.getLogger(this.getClass());
-
-	@Before
-	public void setUp() {
-		initialization();
-		samplePage = new SamplePage(driver);
-	}
 
 	@Given("^User navigates to test Url$")
 	public void user_navigates_to_test_Url() throws Throwable {
 		try {
-			// Launching the application
-			driver.get(Utilities.testURL);
 			// To check page loaded successfully
 			samplePage.validatePageLoaded();
 		} catch (Exception e) {
@@ -118,11 +107,6 @@ public class SampleStepDefination extends TestBase {
 			e.printStackTrace();
 			Assert.fail("Error in getting the amount values, Please check and try again!!");
 		}
-	}
-
-	@After
-	public void tearDown() {
-		closeBrowser();
 	}
 
 }
