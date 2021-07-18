@@ -29,6 +29,12 @@ public class Utilities {
 		}
 	}
 
+	/**
+	 * Description: This method is to perform initial setup
+	 *
+	 * @author Shash
+	 * 
+	 */
 	public static void setUp() throws IOException {
 		// To Launch Chrome driver instance
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver.exe");
@@ -47,6 +53,12 @@ public class Utilities {
 		driver.get(testURL);
 	}
 
+	/**
+	 * Description: This method is to perform close all the browser sessions
+	 *
+	 * @author Shash
+	 * 
+	 */
 	public static void tearDown() {
 		// Close the browser sessions
 		driver.close();
